@@ -1,0 +1,2 @@
+module BoosHelper
+end

@@ -1,9 +1,14 @@
 Schoolbook::Application.routes.draw do
+
+  root :to => "admin/books#index"
+
   devise_for :users
   devise_for :admins
-  
+
+
   namespace :admin do
-    
+    root :to => "books#index"
+    resources :books
   end
 
   # The priority is based upon order of creation:
