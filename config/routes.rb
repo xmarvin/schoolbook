@@ -4,14 +4,16 @@ Schoolbook::Application.routes.draw do
 
   devise_for :users
 
- resources :books do
+  resources :books do
     resources :chapters
- end
+  end
 
   namespace :admin do
     root :to => "books#index"
     resources :books do
-      resources :chapters
+      resources :chapters do
+        resources :option_tests
+      end
     end
   end
 

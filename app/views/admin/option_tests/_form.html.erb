@@ -1,0 +1,35 @@
+<%= form_for([:admin, @chapter.book, @chapter, @option_test]) do |f| %>
+  <% if @option_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@option_test.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% @option_test.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :question %><br />
+    <%= f.text_field :question %>
+  </div>
+  <div class = "options">
+    <%= f.fields_for :options, @option_test.options  do |ff| %>
+      <div class = "option">
+        <div class="field">
+          <%= ff.label :title %>
+          <%= ff.text_field :title %>
+        </div>
+        <div class="field" style = "float:left;">
+          <%= ff.label :correct %>
+          <%= ff.check_box :correct %>
+        </div>
+      </div>
+    <%- end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

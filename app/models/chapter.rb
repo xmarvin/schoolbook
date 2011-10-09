@@ -9,6 +9,9 @@ class Chapter
 
   referenced_in :book
 
+  has_many :base_tests
+  has_many :option_tests
+
   scope :root, where(:chapter_id => nil)
 
 end
