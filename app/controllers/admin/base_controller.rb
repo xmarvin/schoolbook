@@ -1,4 +1,4 @@
 class Admin::BaseController < ApplicationController
-  inherit_resources
+  load_and_authorize_resource
   layout 'admin'
 end

@@ -1,0 +1,8 @@
+<div class='chapter'>
+<%= chapter.title %>
+<%= link_to 'Edit', edit_admin_book_chapter_path(@book, chapter) %>
+<div class='child_chapters'>
+  <%= render chapter.chapters %>
+</div>
+<%= render :partial => 'form', :locals => {:chapter => chapter.chapters.new } %>
+</div>

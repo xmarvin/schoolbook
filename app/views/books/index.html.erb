@@ -1,0 +1,17 @@
+<h1>Listing books</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+  <tr>
+    <td><%= book.title %></td>
+    <td><%= link_to 'Сhapters',[book, :chapters] %></td>
+  </tr>
+<% end %>
+</table>

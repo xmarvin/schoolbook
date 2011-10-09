@@ -1,0 +1,7 @@
+<h1>Chapters</h1>
+
+<%- unless @root_chapter.nil? %>
+  <%= render @root_chapter %>
+<%- else %>
+  <%= render :partial => 'form', :locals => {:chapter => @book.chapters.build } %>
+<%- end %>

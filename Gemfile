@@ -24,8 +24,13 @@ gem 'inherited_resources', '~> 1.2.2'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec', '>= 2.6.0'
+  gem 'fabrication'
+  gem 'database_cleaner'
 end
+
 gem "devise"
 gem "jquery-rails"
 gem "bson_ext"
 gem "mongoid", ">= 2.0.0.beta.19"
+gem "cancan"

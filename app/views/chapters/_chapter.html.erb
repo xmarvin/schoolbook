@@ -1,0 +1,6 @@
+<div class='chapter'>
+  <%= link_to chapter.title, [@book, chapter ] %>
+  <div class='child_chapters'>
+    <%= render chapter.chapters %>
+  </div>
+</div>
