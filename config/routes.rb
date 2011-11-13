@@ -1,18 +1,31 @@
 Schoolbook::Application.routes.draw do
 
+  resources :exams
+
+  mount Rack::GridFS::Endpoint.new(:db => Mongoid.database, :lookup => :path), :at => "gridfs"
+
   root :to => "admin/books#index"
 
   devise_for :users
 
   resources :books do
-    resources :chapters
+    resources :chapters do
+      get 'test'
+    end
   end
 
   namespace :admin do
     root :to => "books#index"
+
+
     resources :books do
+
+      resources :images
+      resources :dict_items
+
       resources :chapters do
         resources :option_tests
+        resources :text_tests
       end
     end
   end

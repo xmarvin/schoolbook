@@ -1,0 +1,26 @@
+<h1>Listing admin_images</h1>
+
+<table>
+  <tr>
+
+    <th>Url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @images.each do |admin_image| %>
+  <tr>
+    <td>
+      <%= admin_image.image.url  %>
+    </td>
+    <td><%= link_to 'Show', [@book, admin_image] %></td>
+    <td><%= link_to 'Edit', edit_admin_books_image_path(@book, admin_image) %></td>
+    <td><%= link_to 'Destroy', [@book, admin_image], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Image', new_admin_book_image_path(@book) %>

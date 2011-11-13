@@ -28,9 +28,15 @@ group :test do
   gem 'fabrication'
   gem 'database_cleaner'
 end
-
+gem 'rspec-rails'
+gem 'spork'
 gem "devise"
 gem "jquery-rails"
 gem "bson_ext"
 gem "mongoid", ">= 2.0.0.beta.19"
-gem "cancan"
+gem 'rack-gridfs', :require => 'rack/gridfs'
+gem 'bson_ext', :require => 'mongo'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'rr'
+gem 'fabrication'
+gem 'database_cleaner'

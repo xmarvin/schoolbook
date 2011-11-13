@@ -5,7 +5,9 @@ class OptionTest < BaseTest
 
   def initialize(options = nil)
     super(options)
-    4.times { self.options.build }
+    if self.options.empty?
+      4.times { self.options.build }
+    end
   end
 
 

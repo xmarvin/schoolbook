@@ -6,12 +6,14 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @books.each do |book| %>
   <tr>
     <td><%= book.title %></td>
     <td><%= link_to 'Сhapters',[:admin,book, :chapters] %></td>
+    <td><%= link_to 'Dictionary',[:admin,book, :dict_items] %></td>
     <td><%= link_to 'Edit', edit_admin_book_path(book) %></td>
     <td><%= link_to 'Destroy', [:admin,book], confirm: 'Are you sure?', method: :delete %></td>
   </tr>

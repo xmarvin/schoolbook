@@ -1,5 +1,9 @@
 class Admin::ChaptersController < Admin::BaseController
-  belongs_to :book
+  belongs_to :book, :finder => :find_by_title
+
+  def method_for_find
+    :find_by_title
+  end
 
   def index
     index!{

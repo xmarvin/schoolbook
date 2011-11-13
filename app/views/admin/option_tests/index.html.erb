@@ -11,9 +11,11 @@
 <% @option_tests.each do |option_test| %>
   <tr>
     <td><%= option_test.question %></td>
-    
+
     <td><%= link_to 'Edit', [:edit, :admin, @chapter.book, @chapter, option_test] %></td>
     <td><%= link_to 'Destroy', [:admin, @chapter.book, @chapter, option_test], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
+
+<%= link_to 'Back to chater', edit_admin_book_chapter_path(@chapter.book, @chapter) %>

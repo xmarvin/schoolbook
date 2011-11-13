@@ -1,0 +1,106 @@
+<div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div property="content:encoded" class="field-item even"><h3>Цели</h3>
+<ul><li>Полная готовность к работе с Git.</li>
+</ul><h2><em>01</em> Установка имени и электронной почты</h2>
+<p>Если вы никогда ранее не использовали git, для начала вам необходимо осуществить установку. Выполните следующие команды, чтобы git узнал ваше имя и электронную почту. Если git уже установлен, можете переходить к разделу <a href="http://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4_%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8">окончания строк</a>.</p>
+<h4>Выполнить:</h4>
+<pre class="instructions">git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"</pre>
+
+<h2><em>02</em> Параметры установки окончаний строк</h2>
+
+<p>Также, для пользователей Unix/Mac:</p>
+
+<h4>Выполнить:</h4>
+
+<pre class="instructions">git config --global core.autocrlf input
+git config --global core.safecrlf true</pre>
+
+<p>Для пользователей Windows:</p>
+
+<h4>Выполнить:</h4>
+
+<pre class="instructions">git config --global core.autocrlf true
+git config --global core.safecrlf true</pre></div></div></div>
+
+
+<div class="clearfix" id="page">
+
+      
+      
+                    <h1 class="page-title">11. Алиасы</h1>
+                        
+                    <div class="region region-content">
+    <div class="block-system" id="block-system-main">
+
+    
+  <div class="content">
+    <div typeof="sioc:Item foaf:Document" about="/aliases" class="node node-book clearfix" id="node-12">
+
+  <div class="node-header">
+            
+      </div> <!-- /.node-header -->
+
+  <div class="content clearfix">
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div property="content:encoded" class="field-item even"><h3>Цели</h3>
+<ul><li>Научиться настраивать алиасы и шорткаты для команд git</li>
+</ul><p class="note"><strong>Примечание:</strong> Этот раздел для пользователей posix-совместимых командных оболочек. Пользователи Windows и других ОС могут пропустить этот урок, либо попытаться повторить все это с помощью <a href="http://forum.script-coding.com/viewtopic.php?id=3889">doskey</a>. Если вы решите пропустить урок, помните, что далее по тексту команда <code>git hist</code> является алиасом <code>git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short</code></p>
+<h2><em>01</em> Общие алиасы</h2>
+<p><ins>git status</ins>, <ins>git add</ins>, <ins>git commit</ins>, <ins>git checkout</ins> &mdash; общие команды, для которых полезно иметь сокращения.</p>
+<p>Добавьте следующее в файл .gitconfig в вашем $<span class="caps">HOME</span> каталоге.</p>
+<h4>Файл: <em>.gitconfig</em></h4>
+<pre class="file">[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p</pre>
+
+<p>Мы уже успели рассмотреть команды <code>commit</code> и <code>status</code>, в предыдущем уроке рассмотрели команду <code>log</code> и совсем скоро познакомимся с <code>checkout</code>. Главное, что стоит запомнить из этого урока, так это то, что теперь вы можете вводить <code>git st</code> там, где раньше приходилось использовать <code>git status</code>. Аналогичным образом, пишем <code>git co</code> вместо <code>git checkout</code> и <code>git ci</code> вместо <code>git commit</code>. Что лучше всего, команда <code>git hist</code> позволит избежать ввода очень длинной команды <code>log</code>.</p>
+
+<p>Попробуйте использовать новые команды.</p>
+
+<h2><em>02</em> Задайте алиас <code>hist</code> в файле <code>.gitconfig</code> </h2>
+
+<p>По большей части, я буду продолжать печатать полные команды в этом руководстве. Единственным исключением будет использование алиаса <code>hist</code>, указанного выше, когда мне понадобится посмотреть git лог. Если вы хотите повторять мои действия, убедитесь, что алиас <code>hist</code> установлен в вашем файле <code>.gitconfig</code>.</p>
+
+<h2><em>03</em> <code>Type</code> и <code>Dump</code></h2>
+
+<p>Мы добавили несколько алиасов для команд, которых мы еще не рассматривали. С командой <code>git branch</code> разберемся чуть позже, а команда <code>git cat-file</code> используется для исследования git, в чем мы вскоре убедимся.</p>
+
+<h2><em>04</em> Алиасы команд (опционально)</h2>
+
+<p>Если ваша оболочка поддерживает алиасы или шорткаты, вы можете добавить алиасы и на этом уровне. Я использую:</p>
+
+<h4>Файл: <em>.profile</em></h4>
+
+<pre class="file">alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gk='gitk --all&amp;'
+alias gx='gitx --all'
+
+alias got='git '
+alias get='git '</pre>
+
+<p>Сокращение <code>go</code> для команды <code>git checkout</code> особенно полезно. Оно позволяет мне вводить:</p>
+
+<pre class="instructions">go &lt;branch&gt;</pre>
+
+<p>для переключения в отдельную ветку.</p>
+
+<p>И да, я достаточно часто пишу вместо <code>git</code> <code>get</code> или <code>got</code>, поэтому создам алиасы и для них.</p></div></div></div>  <div class="book-navigation" id="book-navigation-1">
+        <div class="page-links clearfix">
+              <a title="Go to previous page" class="page-previous" href="/history" style="height: 23px;">‹ 10. История</a>
+            <div class="toc-container">
+                  <a title="Go to parent page" class="page-up" href="/git_how_to" style="height: 23px;"></a>
+
+          </div>
+            </div>
+      </div>
+      </div>
+        </div>

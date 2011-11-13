@@ -1,0 +1,439 @@
+<div class="clearfix" id="page">
+
+      
+      
+                    <h1 class="page-title">10. История</h1>
+                        
+                    <div class="region region-content">
+    <div class="block-system" id="block-system-main">
+
+    
+  <div class="content">
+    <div typeof="sioc:Item foaf:Document" about="/history" class="node node-book clearfix" id="node-11">
+
+  <div class="node-header">
+            
+      </div> <!-- /.node-header -->
+
+  <div class="content clearfix">
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div property="content:encoded" class="field-item even"><h3>Цели</h3>
+<ul><li>Научиться просматривать историю проекта.</li>
+</ul><p>Получение списка произведенных изменений &mdash; функция команды <code>git log</code>.</p>
+<h4>Выполните:</h4>
+<pre class="instructions">git log</pre>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git log
+commit fa3c1411aa09441695a9e645d4371e8d749da1dc
+Author: Marina Pushkova &lt;marina (at) githowto.com&gt;
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    Added HTML header
+
+commit 8c3228730ed03116815a5cc682e8105e7d981928
+Author: Marina Pushkova &lt;marina (at) githowto.com&gt;
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    Added standard HTML page tags
+
+commit 43628f779cb333dd30d78186499f93638107f70b
+Author: Marina Pushkova &lt;marina (at) githowto.com&gt;
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    Added h1 tag
+
+commit 911e8c91caeab8d30ad16d56746cbd6eef72dc4c
+Author: Marina Pushkova &lt;marina (at) githowto.com&gt;
+Date:   Wed Mar 9 10:27:54 2011 -0500
+
+    First Commit</pre>
+
+<p>Вот список всех четырех коммитов в репозиторий, которые мы успели совершить.</p>
+
+<h2><em>01</em> Однострочная история</h2>
+
+<p>Вы полностью контролируете то, что отображает <code>log</code>. Мне, например, нравится однострочный формат:</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git log --pretty=oneline</pre>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git log --pretty=oneline
+fa3c1411aa09441695a9e645d4371e8d749da1dc Added HTML header
+8c3228730ed03116815a5cc682e8105e7d981928 Added standard HTML page tags
+43628f779cb333dd30d78186499f93638107f70b Added h1 tag
+911e8c91caeab8d30ad16d56746cbd6eef72dc4c First Commit</pre>
+
+<h2><em>02</em> Контроль отображения записей</h2>
+
+<p>Есть много вариантов выбора, какие элементы отображаются в логе. Поиграйте со следующими параметрами:</p>
+
+<pre class="instructions">git log --pretty=oneline --max-count=2
+git log --pretty=oneline --since='5 minutes ago'
+git log --pretty=oneline --until='5 minutes ago'
+git log --pretty=oneline --author=&lt;your name&gt;
+git log --pretty=oneline --all</pre>
+
+<p>Подробности в инструкции <code>git-log</code>.</p>
+
+<h2><em>03</em> Изощряемся</h2>
+
+<p>Вот что я использую для просмотра изменений, сделанных за последнюю неделю. Я добавлю <code>--author=marina</code>, если я хочу увидеть только изменения, которые сделала я.</p>
+
+<pre class="instructions">git log --all --pretty=format:"%h %cd %s (%an)" --since='7 days ago'</pre>
+
+<h2><em>04</em> Конечный формат лога</h2>
+
+<p>Со временем, я решила, что для большей части моей работы мне подходит следующий формат лога.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short</pre>
+
+<p>Выглядит это примерно так:</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+* fa3c141 2011-03-09 | Added HTML header (HEAD, master) [Marina Pushkova]
+* 8c32287 2011-03-09 | Added standard HTML page tags [Marina Pushkova]
+* 43628f7 2011-03-09 | Added h1 tag [Marina Pushkova]
+* 911e8c9 2011-03-09 | First Commit [Marina Pushkova]</pre>
+
+<p>Давайте рассмотрим его в деталях:</p>
+
+<ul><li><code>--pretty="..."</code> &mdash; определяет формат вывода.</li>
+<li><code>%h</code> &mdash; укороченный хэш коммита</li>
+<li><code>%d</code> &mdash; дополнения коммита («головы» веток или теги)</li>
+<li><code>%ad</code> &mdash; дата коммита</li>
+<li><code>%s</code> &mdash; комментарий</li>
+<li><code>%an</code> &mdash; имя автора</li>
+<li><code>--graph</code> &mdash; отображает дерево коммитов в виде <span class="caps">ASCII</span>-графика</li>
+<li><code>--date=short</code> &mdash; сохраняет формат даты коротким и симпатичным</li>
+</ul><p>Таким образом, каждый раз, когда вы захотите посмотреть лог, вам придется много печатать. К счастью, мы узнаем о git алиасах в следующем уроке.</p>
+
+<h2><em>05</em> Другие инструменты</h2>
+
+<p>Оба <code>gitx</code> (для Mac) и <code>gitk</code> (для любой платформы) полезны в изучении истории изменений.</p></div></div></div>  <div class="book-navigation" id="book-navigation-1">
+
+  </div>
+
+  
+</div>
+  </div>
+</div>
+  </div>
+        <div class="region region-content-bottom">
+    <div class="block block-block" id="block-block-4">
+
+    
+  <div class="content">
+    <div style="left: 390px;position: absolute;top: -50px;"><div id="___plusone_0" style="height: 20px; width: 90px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"><iframe width="100%" scrolling="no" frameborder="0" title="+1" vspace="0" tabindex="-1" style="position: static; left: 0pt; top: 0pt; width: 90px; margin: 0px; border-style: none; height: 20px; visibility: visible;" src="https://plusone.google.com/u/0/_/+1/fastbutton?url=http%3A%2F%2Fgithowto.com%2Fhistory&amp;size=medium&amp;count=true&amp;annotation=&amp;hl=en-US&amp;jsh=r%3Bgc%2F24479126-6666cb8c#id=I1_1319301189187&amp;parent=http%3A%2F%2Fgithowto.com&amp;rpctoken=208238708&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe" name="I1_1319301189187" marginwidth="0" marginheight="0" id="I1_1319301189187" hspace="0" allowtransparency="true"></iframe></div></div>  </div>
+</div>
+<div class="block block-block" id="block-block-3">
+
+    
+  <div class="content">
+    <div style="left:480px;position: absolute;top: -50px;"><iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.html#_=1319301188365&amp;count=horizontal&amp;id=twitter_tweet_button_0&amp;lang=en&amp;original_referer=http%3A%2F%2Fgithowto.com%2Fhistory&amp;text=%D0%A1%D1%83%D0%BF%D0%B5%D1%80-%D1%82%D1%83%D1%80-%D0%BE%D0%B1%D1%83%D1%87%D0%B0%D0%BB%D0%BA%D0%B0%20GIT&amp;url=http%3A%2F%2Fgithowto.com%2F&amp;via=githowto" class="twitter-share-button twitter-count-horizontal" style="width: 110px; height: 20px;" title="Twitter For Websites: Tweet Button"></iframe>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script></div>  </div>
+</div>
+<div class="block block-block" id="block-block-1">
+
+    
+  <div class="content">
+    <div style="left: 700px;position: absolute;top: -50px;">
+<iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:150px; height:21px;" src="http://www.facebook.com/plugins/like.php?app_id=245589052121813&amp;href=http%3A%2F%2Fgithowto.com%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21"></iframe>
+</div>  </div>
+</div>
+<div class="block block-block" id="block-block-2">
+
+    
+  <div class="content">
+    <div style="left: 600px;position: absolute;top: -50px;">
+<div id="vk_like" style="width: 100px; background: none repeat scroll 0% 0% transparent; height: 22px; position: relative; clear: both;"><iframe width="100%" scrolling="no" height="22px" frameborder="0" name="fXDe1a49" style="height: 22px; width: 100px; overflow: hidden; z-index: 150;" src="http://vkontakte.ru/widget_like.php?app=2272805&amp;width=100%&amp;page=0&amp;url=http%3A%2F%2Fgithowto.com%2Fhistory&amp;type=mini&amp;verb=1&amp;title=10.%20%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%20%7C%20Git%20How%20To&amp;description=Git%20How%20To%20%E2%80%94%20%D1%8D%D1%82%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%82%D1%83%D1%80%2C%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B9%20%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%20%D0%B2%D0%B0%D1%81%20%D1%81%20%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0%D0%BC%D0%B8%20Git.%20%D0%A2%D1%83%D1%80%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%20%D1%81%20%D0%BF%D0%BE%D0%BD%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D1%82%D0%BE%D0%B3%D0%BE%2C%20%D1%87%D1%82%D0%BE%20%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%BC%20%D1%81%D0%BF%D0%BE%D1%81%D0%BE%D0%B1%D0%BE%D0%BC%20%D0%BD%D0%B0%D1%83%D1%87%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20Git%20%E2%80%94%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1...&amp;image=" id="vkwidget1"></iframe></div>
+<script type="text/javascript">
+VK.Widgets.Like("vk_like", {type: "mini", verb: 1});
+</script>
+</div>  </div>
+</div>
+  </div>
+          </div>
+          
+          <hr>
+
+
+<div class="clearfix" id="page">
+
+
+      
+      
+                    <h1 class="page-title">12. Получение старых версий</h1>
+                        
+                    <div class="region region-content">
+    <div class="block-system" id="block-system-main">
+
+    
+  <div class="content">
+    <div typeof="sioc:Item foaf:Document" about="/getting_old_versions" class="node node-book clearfix" id="node-13">
+
+  <div class="node-header">
+            
+      </div> <!-- /.node-header -->
+
+  <div class="content clearfix">
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div property="content:encoded" class="field-item even"><h3>Цели</h3>
+<ul><li>Научиться возвращать рабочий каталог к любому предыдущему состоянию.</li>
+</ul><p>Возвращаться назад в историю очень просто. Команда checkout скопирует любой снимок из репозитория в рабочий каталог.</p>
+<h2><em>01</em> Получите хэши предыдущих версий</h2>
+<h4>Выполните:</h4>
+<pre class="instructions">git hist</pre>
+
+<p class="note"><strong>Примечание:</strong> Вы не забыли задать <code>hist</code> в вашем файле <code>.gitconfig</code>? Если забыли, посмотрите еще раз урок по <a href="/aliases">алиасам</a>.</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git hist
+* fa3c141 2011-03-09 | Added HTML header (HEAD, master) [Marina Pushkova]
+* 8c32287 2011-03-09 | Added standard HTML page tags [Marina Pushkova]
+* 43628f7 2011-03-09 | Added h1 tag [Marina Pushkova]
+* 911e8c9 2011-03-09 | First Commit [Marina Pushkova]</pre>
+
+<p>Изучите данные лога и найдите хэш для первого коммита. Он должен быть в последней строке данных <code>git hist</code>. Используйте этот хэш-код (достаточно первых 7 знаков) в команде ниже.  Затем проверьте содержимое файла <code>hello.html</code>.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git checkout &lt;hash&gt;
+cat hello.html</pre>
+
+<p class="note"><strong>Примечание:</strong> приведенные здесь команды являются Unix-командами и работают как на Mac, так и на Linux. К сожалению, пользователям Windows придется переводить свои команды.</p>
+
+<p class="note"><strong>Примечание:</strong> Многие команды зависят от хэшевых значений в репозитории. Поскольку ваши хеш-значения будут отличаться от моих, когда вы видите что-то вроде <code>&lt;hash&gt;</code> или <code>&lt;treehash&gt;</code> в команде, подставьте необходимое значение хэш для вашего репозитория.</p>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git checkout 911e8c9
+Note: checking out '911e8c9'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at 911e8c9... First Commit
+$ cat hello.html
+Hello, World</pre>
+
+<p>Выходные данные команды <code>checkout</code> очень хорошо объясняют ситуацию. Старые версии git будут ругаться, что не расположены в локальной ветке. В любом случае, сейчас об этом не беспокойтесь.</p>
+
+<p>Обратите внимание на то, что содержимое файла hello.html является значением по умолчанию.</p>
+
+<h2><em>02</em> Вернитесь к последней версии в ветке master </h2>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git checkout master
+cat hello.html</pre>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git checkout master
+Previous HEAD position was 911e8c9... First Commit
+Switched to branch 'master'
+$ cat hello.html
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>«master» &mdash; имя ветки по умолчанию. Переключая имена веток, вы попадаете на последнюю версию выбранной ветки.</p></div></div></div>  <div class="book-navigation" id="book-navigation-1">
+
+  </div>
+
+
+  </div>
+        <div class="region region-content-bottom">
+    <div class="block block-block" id="block-block-4">
+
+    
+  <div class="content">
+    <div style="left: 390px;position: absolute;top: -50px;"><div id="___plusone_0" style="height: 20px; width: 90px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"><iframe width="100%" scrolling="no" frameborder="0" title="+1" vspace="0" tabindex="-1" style="position: static; left: 0pt; top: 0pt; width: 90px; margin: 0px; border-style: none; height: 20px; visibility: visible;" src="https://plusone.google.com/u/0/_/+1/fastbutton?url=http%3A%2F%2Fgithowto.com%2Fgetting_old_versions&amp;size=medium&amp;count=true&amp;annotation=&amp;hl=en-US&amp;jsh=r%3Bgc%2F24479126-6666cb8c#id=I1_1319301142031&amp;parent=http%3A%2F%2Fgithowto.com&amp;rpctoken=883079673&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe" name="I1_1319301142031" marginwidth="0" marginheight="0" id="I1_1319301142031" hspace="0" allowtransparency="true"></iframe></div></div>  </div>
+</div>
+<div class="block block-block" id="block-block-3">
+
+    
+  <div class="content">
+    <div style="left:480px;position: absolute;top: -50px;"><iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.html#_=1319301141743&amp;count=horizontal&amp;id=twitter_tweet_button_0&amp;lang=en&amp;original_referer=http%3A%2F%2Fgithowto.com%2Fgetting_old_versions&amp;text=%D0%A1%D1%83%D0%BF%D0%B5%D1%80-%D1%82%D1%83%D1%80-%D0%BE%D0%B1%D1%83%D1%87%D0%B0%D0%BB%D0%BA%D0%B0%20GIT&amp;url=http%3A%2F%2Fgithowto.com%2F&amp;via=githowto" class="twitter-share-button twitter-count-horizontal" style="width: 110px; height: 20px;" title="Twitter For Websites: Tweet Button"></iframe>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script></div>  </div>
+</div>
+<div class="block block-block" id="block-block-1">
+
+    
+  <div class="content">
+    <div style="left: 700px;position: absolute;top: -50px;">
+<iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:150px; height:21px;" src="http://www.facebook.com/plugins/like.php?app_id=245589052121813&amp;href=http%3A%2F%2Fgithowto.com%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21"></iframe>
+</div>  </div>
+</div>
+<div class="block block-block" id="block-block-2">
+
+    
+  <div class="content">
+    <div style="left: 600px;position: absolute;top: -50px;">
+<div id="vk_like" style="width: 100px; background: none repeat scroll 0% 0% transparent; height: 22px; position: relative; clear: both;"><iframe width="100%" scrolling="no" height="22px" frameborder="0" name="fXDdccad" style="height: 22px; width: 100px; overflow: hidden; z-index: 150;" src="http://vkontakte.ru/widget_like.php?app=2272805&amp;width=100%&amp;page=0&amp;url=http%3A%2F%2Fgithowto.com%2Fgetting_old_versions&amp;type=mini&amp;verb=1&amp;title=12.%20%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D0%B0%D1%80%D1%8B%D1%85%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9%20%7C%20Git%20How%20To&amp;description=Git%20How%20To%20%E2%80%94%20%D1%8D%D1%82%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%82%D1%83%D1%80%2C%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B9%20%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%20%D0%B2%D0%B0%D1%81%20%D1%81%20%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0%D0%BC%D0%B8%20Git.%20%D0%A2%D1%83%D1%80%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%20%D1%81%20%D0%BF%D0%BE%D0%BD%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D1%82%D0%BE%D0%B3%D0%BE%2C%20%D1%87%D1%82%D0%BE%20%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%BC%20%D1%81%D0%BF%D0%BE%D1%81%D0%BE%D0%B1%D0%BE%D0%BC%20%D0%BD%D0%B0%D1%83%D1%87%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20Git%20%E2%80%94%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1...&amp;image=" id="vkwidget1"></iframe></div>
+<script type="text/javascript">
+VK.Widgets.Like("vk_like", {type: "mini", verb: 1});
+</script>
+</div>  </div>
+</div>
+  </div>
+          </div>
+          
+          
+<hr>          
+<div class="clearfix" id="page">
+
+      
+      
+                    <h1 class="page-title">14. Отмена локальных изменений (до индексации)</h1>
+                        
+                    <div class="region region-content">
+    <div class="block-system" id="block-system-main">
+
+    
+  <div class="content">
+    <div typeof="sioc:Item foaf:Document" about="/undoing_local_changes" class="node node-book clearfix" id="node-15">
+
+  <div class="node-header">
+            
+      </div> <!-- /.node-header -->
+
+  <div class="content clearfix">
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div property="content:encoded" class="field-item even"><h3>Цели</h3>
+<ul><li>Научиться отменять изменения в рабочем каталоге</li>
+</ul><h2><em>01</em> Переключитесь на ветку Master </h2>
+<p>Убедитесь, что вы находитесь на последнем коммите ветки master, прежде чем продолжить работу.</p>
+<h4>Выполните:</h4>
+<pre class="instructions">git checkout master</pre>
+
+<h2><em>02</em> Измените hello.html </h2>
+
+<p>Иногда случается, что вы изменили файл в рабочем каталоге, и хотите отменить последние коммиты. С этим справится команда <code>checkout</code>.</p>
+
+<p>Внесите изменение в файл hello.html в виде нежелательного комментария.</p>
+
+<h4>Файл: <em>hello.html</em></h4>
+
+<pre class="file">&lt;html&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    <strong>&lt;!-- This is a bad comment.  We want to revert it. --&gt;</strong>
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h2><em>03</em> Проверьте состояние </h2>
+
+<p>Сначала проверьте состояние рабочего каталога.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git status</pre>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#	modified:   hello.html
+#
+no changes added to commit (use "git add" and/or "git commit -a")</pre>
+
+<p>Мы видим, что файл <code>hello.html</code> был изменен, но еще не проиндексирован.</p>
+
+<h2><em>04</em> Отмена изменений в рабочем каталоге </h2>
+
+<p>Используйте команду <code>checkout</code> для переключения в версию файла <code>hello.html</code> в репозитории.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git checkout hello.html
+git status
+cat hello.html</pre>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git checkout hello.html
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+$ cat hello.html
+&lt;html&gt;
+<strong>  &lt;head&gt;
+  &lt;/head&gt;</strong>
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p>Команда <code>status</code> показывает нам, что не было произведено никаких изменений, не зафиксированных в рабочем каталоге. И «нежелательный комментарий» больше не является частью содержимого файла.</p></div></div></div>  <div class="book-navigation" id="book-navigation-1">
+
+  </div>
+</div>
+  </div>
+        <div class="region region-content-bottom">
+    <div class="block block-block" id="block-block-4">
+
+    
+  <div class="content">
+    <div style="left: 390px;position: absolute;top: -50px;"><div id="___plusone_0" style="height: 20px; width: 90px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"><iframe width="100%" scrolling="no" frameborder="0" title="+1" vspace="0" tabindex="-1" style="position: static; left: 0pt; top: 0pt; width: 90px; margin: 0px; border-style: none; height: 20px; visibility: visible;" src="https://plusone.google.com/u/0/_/+1/fastbutton?url=http%3A%2F%2Fgithowto.com%2Fundoing_local_changes&amp;size=medium&amp;count=true&amp;annotation=&amp;hl=en-US&amp;jsh=r%3Bgc%2F24479126-6666cb8c#id=I1_1319301332533&amp;parent=http%3A%2F%2Fgithowto.com&amp;rpctoken=629536145&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe" name="I1_1319301332533" marginwidth="0" marginheight="0" id="I1_1319301332533" hspace="0" allowtransparency="true"></iframe></div></div>  </div>
+</div>
+<div class="block block-block" id="block-block-3">
+
+    
+  <div class="content">
+    <div style="left:480px;position: absolute;top: -50px;"><iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.html#_=1319301331409&amp;count=horizontal&amp;id=twitter_tweet_button_0&amp;lang=en&amp;original_referer=http%3A%2F%2Fgithowto.com%2Fundoing_local_changes&amp;text=%D0%A1%D1%83%D0%BF%D0%B5%D1%80-%D1%82%D1%83%D1%80-%D0%BE%D0%B1%D1%83%D1%87%D0%B0%D0%BB%D0%BA%D0%B0%20GIT&amp;url=http%3A%2F%2Fgithowto.com%2F&amp;via=githowto" class="twitter-share-button twitter-count-horizontal" style="width: 110px; height: 20px;" title="Twitter For Websites: Tweet Button"></iframe>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script></div>  </div>
+</div>
+<div class="block block-block" id="block-block-1">
+
+    
+  <div class="content">
+    <div style="left: 700px;position: absolute;top: -50px;">
+<iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:150px; height:21px;" src="http://www.facebook.com/plugins/like.php?app_id=245589052121813&amp;href=http%3A%2F%2Fgithowto.com%2F&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21"></iframe>
+</div>  </div>
+</div>
+<div class="block block-block" id="block-block-2">
+
+    
+  <div class="content">
+    <div style="left: 600px;position: absolute;top: -50px;">
+<div id="vk_like" style="width: 100px; background: none repeat scroll 0% 0% transparent; height: 22px; position: relative; clear: both;"><iframe width="100%" scrolling="no" height="22px" frameborder="0" name="fXD8c34e" style="height: 22px; width: 100px; overflow: hidden; z-index: 150;" src="http://vkontakte.ru/widget_like.php?app=2272805&amp;width=100%&amp;page=0&amp;url=http%3A%2F%2Fgithowto.com%2Fundoing_local_changes&amp;type=mini&amp;verb=1&amp;title=14.%20%D0%9E%D1%82%D0%BC%D0%B5%D0%BD%D0%B0%20%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9%20(%D0%B4%D0%BE%20%D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%B0%D1%86%D0%B8%D0%B8)%20%7C%20Git%20How%20To&amp;description=Git%20How%20To%20%E2%80%94%20%D1%8D%D1%82%D0%BE%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%82%D1%83%D1%80%2C%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B9%20%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%20%D0%B2%D0%B0%D1%81%20%D1%81%20%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0%D0%BC%D0%B8%20Git.%20%D0%A2%D1%83%D1%80%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%20%D1%81%20%D0%BF%D0%BE%D0%BD%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D1%82%D0%BE%D0%B3%D0%BE%2C%20%D1%87%D1%82%D0%BE%20%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%BC%20%D1%81%D0%BF%D0%BE%D1%81%D0%BE%D0%B1%D0%BE%D0%BC%20%D0%BD%D0%B0%D1%83%D1%87%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20Git%20%E2%80%94%20%D0%BF%D0%BE%D0%BF%D1%80%D0%BE%D0%B1...&amp;image=" id="vkwidget1"></iframe></div>
+<script type="text/javascript">
+VK.Widgets.Like("vk_like", {type: "mini", verb: 1});
+</script>
+</div>  </div>
+</div>
+  </div>
+          </div>

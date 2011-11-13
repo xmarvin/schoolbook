@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :question %><br />
-    <%= f.text_field :question %>
+    <%= f.text_area :question, :rows => 5, :cols => 70 %>
   </div>
   <div class = "options">
     <%= f.fields_for :options, @option_test.options  do |ff| %>
@@ -21,10 +21,7 @@
         <div class="field">
           <%= ff.label :title %>
           <%= ff.text_field :title %>
-        </div>
-        <div class="field" style = "float:left;">
-          <%= ff.label :correct %>
-          <%= ff.check_box :correct %>
+        <%= ff.check_box :correct %>
         </div>
       </div>
     <%- end %>
