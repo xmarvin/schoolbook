@@ -3,19 +3,18 @@
 <table>
   <tr>
     <th></th>
-    <th></th>
-    <th></th>
+
   </tr>
 
 <% @exams.each do |exam| %>
   <tr>
+    <td><%= exam.updated_at %></td>
+    <td><%= exam.result  %></td>
     <td><%= link_to 'Show', exam %></td>
-    <td><%= link_to 'Edit', edit_exam_path(exam) %></td>
-    <td><%= link_to 'Destroy', exam, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Exam', new_exam_path %>
+<%= link_to 'New Exam', new_book_chapter_exam_path(@chapter.book, @chapter) %>

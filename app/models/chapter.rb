@@ -13,6 +13,8 @@ class Chapter
   has_many :option_tests
   has_many :text_tests
 
+  has_many :exams
+
   scope :root, where(:chapter_id => nil)
 
   before_destroy :attach_childs

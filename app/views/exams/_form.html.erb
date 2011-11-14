@@ -1,4 +1,4 @@
-<%= form_for(@exam) do |f| %>
+<%= form_for([ @chapter.book, @chapter, @exam]) do |f| %>
   <% if @exam.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
@@ -10,6 +10,31 @@
       </ul>
     </div>
   <% end %>
+
+
+
+  <div class = "options">
+    <%= f.fields_for :answers, @exam.answers  do |ff| %>
+      <div>
+            <%- puts "*"*100 %>
+        <%- p ff.object.base_test %>
+        <%= render ff.object.base_test %>
+
+      </div>
+
+       <div class="field">
+
+    <%= ff.label :answer %><br />
+    <%= ff.text_field :answer %>
+  </div>
+
+
+
+    <%- end %>
+  </div>
+
+
+
 
   <div class="actions">
     <%= f.submit %>

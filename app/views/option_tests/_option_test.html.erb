@@ -1,0 +1,12 @@
+<div>
+  <b>Question:</b>
+<%= option_test.question %>
+    </div>
+
+<ol>
+  <%- option_test.options.each do |option| %>
+         <li>
+           <%=option.title %>
+         </li>
+  <%- end  %>
+</ol>

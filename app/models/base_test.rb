@@ -4,4 +4,5 @@ class BaseTest
   field :question, :type => String
   belongs_to :chapter
 
+  has_many :answers
 end

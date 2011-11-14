@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 def read_content i
   File.open(File.expand_path("git/book_#{i}.htm", File.dirname(__FILE__))).read
 end
@@ -13,11 +15,26 @@ end
 #User.create!(:email => "admin@mailinator.com", :password=>"qweqwe", :admin => true)
 #User.create!(:email => "user@mailinator.com", :password=>"qweqwe")
    Book.destroy_all
-
+   Exam.destroy_all
+   Image.destroy_all
+   BaseTest.destroy_all
 @book = Book.create!(:title => 'GIT')
-  @book.images.create!(:image => File.open(File.expand_path("git/images/diff-tool.png", File.dirname(__FILE__))))
+
+Dir["db/git/images/*.*"].each {|file|
+  @book.images.create!(:image => File.open("./"+file))
+
+  }
+
 root = @book.chapters.create!(:title => 'About',:content => read_content(1))
 
+root.option_tests.create!(:question => "Зачем нужен GIT?",
+                          :options => [Option.new(:title => "Для разработки"), Option.new(:title => "Для тестирования"),
+                          Option.new(:title => "Для хранения кода", :correct=> true)
+                          ])
+ root.option_tests.create!(:question => "Что тут лишние?",
+                          :options => [Option.new(:title => "SVN"),Option.new(:title => "Mercurial"),
+                          Option.new(:title => "IDEA IDE", :correct => true)
+                          ])
 ch2 = @book.chapters.create!(:title => 'Installation', :chapter => root,  :content => read_content(2))
 ch3 = @book.chapters.create!(:title => 'Configuration', :chapter => root, :content => read_content(3))
 

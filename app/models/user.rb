@@ -6,4 +6,6 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   field :admin, :type => Boolean, :default => false
+
+  has_many :exams
 end

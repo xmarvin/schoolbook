@@ -10,7 +10,9 @@ Schoolbook::Application.routes.draw do
 
   resources :books do
     resources :chapters do
-      get 'test'
+      resources :exams do
+
+      end
     end
   end
 

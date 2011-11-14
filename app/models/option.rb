@@ -2,8 +2,9 @@ class Option
   include Mongoid::Document
 
   field :title, :type => String
-  field :correct, :type => Boolean
+  field :num, :type => Integer   , :default => 0
+  field :correct, :type => Boolean, :default => false
 
-  embedded_in :option_tests
+  embedded_in :option_test
 
 end
