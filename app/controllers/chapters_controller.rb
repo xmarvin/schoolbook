@@ -1,6 +1,6 @@
 class ChaptersController < ApplicationController
   belongs_to :book, :finder => :find_by_title
-
+         before_filter :find_root, :only => [:index, :show]
   def method_for_find
     :find_by_title
   end
@@ -27,14 +27,12 @@ class ChaptersController < ApplicationController
   def test
     puts "*"*10
     @chapter = Chapter.find_by_title(params[:chapter_id])
-    p @chapter
     @tests = @chapter.base_tests
   end
 
-  def index
-    index!{
+  def find_root
+    @book = Book.find_by_title(params[:book_id])
       @root_chapter = @book.chapters.root.first
-    }
   end
 
 

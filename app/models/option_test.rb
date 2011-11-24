@@ -8,13 +8,18 @@ class OptionTest < BaseTest
   def initialize(options = nil)
     super(options)
     if self.options.empty?
-      4.times { self.options.build }
+      3.times { self.options.build }
     end
   end
 
   def result_for(answer)
-    correct = self.options.where(:correct => true).first
-    correct.num == answer.to_i ? 1 : 0
+    corrects = self.options.where(:correct => true)
+    res = 0.0
+    answers = answer.split(' ').map{|a| a.to_i}
+    answers.each { |a|
+       res += [1, corrects.where(:num => a).count].min
+    }
+    res / corrects.count
   end
 
 
@@ -24,7 +29,6 @@ class OptionTest < BaseTest
       |o|
       if o.num==0
         o.num = self.options.map{|o| o.num}.max  + 1
-        puts o.num
       end
     }
   end
