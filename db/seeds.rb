@@ -12,12 +12,15 @@ end
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#User.create!(:email => "admin@mailinator.com", :password=>"qweqwe", :admin => true)
+
 #User.create!(:email => "user@mailinator.com", :password=>"qweqwe")
+User.destroy_all
 Book.destroy_all
 Exam.destroy_all
 Image.destroy_all
 BaseTest.destroy_all
+
+User.create!(:email => "admin@mailinator.com", :password=>"qweqwe", :admin => true)
 @book = Book.create!(:title => 'GIT')
 
 Dir["db/git/images/*.*"].each { |file|

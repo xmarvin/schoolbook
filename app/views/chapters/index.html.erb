@@ -1,4 +1,45 @@
-<h1>Chapters</h1>
+	<div id="page">
+	<div id="page-bgtop">
+	<div id="page-bgbtm">
+		<div id="content">
+			<div class="post">
+				<h2 class="title"><a href="#">Welcome to Deviation   </a></h2>
+				<p class="meta"><span class="date">September 10, 2009</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
+				<div style="clear: both;">&nbsp;</div>
+				<div class="entry">
+					<h2>Book description</h2>
+					<p> <%=@book.description %></p>
+				</div>
+			</div>
+		
+	
+		<div style="clear: both;">&nbsp;</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<div id="search" >
+					<form method="get" action="#">
+						<div>
+							<input type="text" name="s" id="search-text" value="" />
+							<input type="submit" id="search-submit" value="GO" />
+						</div>
+					</form>
+					</div>
+					<div style="clear: both;">&nbsp;</div>
+				</li>
+				<li>
+					
+					  <%= render 'menu' %>
+					 
+				</li>
+				
 
-  <%= render 'menu' %>
-
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	</div>
+	</div>
