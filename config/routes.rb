@@ -4,7 +4,7 @@ Schoolbook::Application.routes.draw do
 
   mount Rack::GridFS::Endpoint.new(:db => Mongoid.database, :lookup => :path), :at => "gridfs"
 
-  root :to => "admin/books#index"
+  root :to => "chapters#index"
 
   devise_for :users
 

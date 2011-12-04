@@ -2,6 +2,8 @@ class Chapter
   include Mongoid::Document
 
   field :title, :type => String
+  field :pretty_title, :type => String
+  field :pos, :type => Integer
   field :content
 
   has_many :chapters
@@ -18,6 +20,8 @@ class Chapter
   scope :root, where(:chapter_id => nil)
 
   before_destroy :attach_childs
+
+  default_scope :order => [:pos,:asc]
 
   def attach_childs
     return if self.chapter.nil?

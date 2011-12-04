@@ -7,16 +7,13 @@ class ChaptersController < ApplicationController
 
   def show
     show!  do
-    puts "*"*100
-    p @chapter
+
     content = @chapter.content
     @book.dict_items.each do |item|
-      content = content.gsub(item.word, tip_for(item.word, item.tip))
+      content = content.gsub(/(\s)#{item.word}(\s)/i, "#{$1} #{tip_for(item.word, item.tip)} #{$2}")
     end
 
     @chapter_content = content.html_safe
-    p @chapter_content
-    p "----------"
     end
   end
 
@@ -25,14 +22,13 @@ class ChaptersController < ApplicationController
   end
 
   def test
-    puts "*"*10
     @chapter = Chapter.find_by_title(params[:chapter_id])
     @tests = @chapter.base_tests
   end
 
   def find_root
     @book = Book.find_by_title(params[:book_id])
-      @root_chapter = @book.chapters.root.first
+    @root_chapter = @book.chapters.root.first
   end
 
 

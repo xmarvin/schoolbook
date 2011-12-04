@@ -343,10 +343,12 @@ a:hover {
 #sidebar a {
 	border: none;
 	color: #464032;
+    text-transform: uppercase;
 }
 
 #sidebar a:hover {
 	text-decoration: underline;
+
 	color: #8A8A8A;
 }
 

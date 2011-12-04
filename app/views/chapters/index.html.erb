@@ -3,12 +3,10 @@
 	<div id="page-bgbtm">
 		<div id="content">
 			<div class="post">
-				<h2 class="title"><a href="#">Welcome to Deviation   </a></h2>
-				<p class="meta"><span class="date">September 10, 2009</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
 					<h2>Book description</h2>
-					<p> <%=@book.description %></p>
+					<p> <%=@book.description.html_safe %></p>
 				</div>
 			</div>
 		

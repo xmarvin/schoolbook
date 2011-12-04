@@ -3,34 +3,40 @@
 <head>
   <title>Schoolbook</title>
 
- <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "jquery-1.5.0.min", "jquery-ui.min", "jquery-ujs",  "application" %>
+  <%= stylesheet_link_tag "application", "tooltip" %>
+  <%= javascript_include_tag "jquery-1.5.0.min", "jquery-ui.min", "jquery-ujs", "application" %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
 <div id="wrapper">
-	<div id="header">
-		<div id="logo">
-			<h1><a href="#"> <%= @book ?  @book.title  : 'Books' %></a></h1>
-		</div>
-	</div>
-		<div id="menu">
-		<ul>
-			<li class="current_page_item"><a href="#">Books</a></li>
-			<li><a href="#">Total exam</a></li>
-			<li><a href="#">Dictionary</a></li>
-			<li><a href="#">About</a></li>
-		</ul>
-	</div>
-<%= yield %>
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#"> <%= @book ? @book.title : 'Git' %></a></h1>
+    </div>
+  </div>
+  <div id="menu">
+    <ul>
+      <%- if @book %>
+          <li class="current_page_item">
+            <%= link_to "Chapters", [@book, :chapters] %>
+          </li>
+          <li><a href="#">Total exam</a></li>
+          <li><a href="#">Dictionary</a></li>
+          <li>
+            <%= link_to "About", @book %>
+          </li>
+      <%- end %>
+    </ul>
+  </div>
+  <%= yield %>
 
 
-	</div>
-	<!-- end #page -->
 </div>
-	<div id="footer">
-		<p>Copyright (c) 2011 Alexey Kisel. LDL Corp. All rights reserved</p>
-	</div>
+<!-- end #page -->
+</div>
+<div id="footer">
+  <p>Copyright (c) 2011 Alexey Kisel. LDL Corp. All rights reserved</p>
+</div>
 </body>
 </html>

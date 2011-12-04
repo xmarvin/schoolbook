@@ -1,12 +1,13 @@
-  </div>
-  
-  
+
   	
 	 <h2>Chapters</h2>
 					<ul>
 						
-					
+  <%- @book.chapters.each do |chapter| %>
+        <%- puts chapter.title %>
 
-  <%= render @book.chapters %>
+
+  <%= render chapter %>
+                          <%- end  %>
 
 					</ul>

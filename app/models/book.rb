@@ -18,7 +18,7 @@ class Book
   end
 
   def self.find_by_title title
-    self.where(:title => title).first
+    self.where(:title => 'git').first
   end
 
 end

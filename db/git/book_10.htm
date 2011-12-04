@@ -1,32 +1,39 @@
 <div id="main-wrapper" class=" first last">
-  <div id="main">
-    <div id="page" class="clearfix">
+    <div id="main">
+        <div id="page" class="clearfix">
 
 
+            <h1 class="page-title">30. Разрешение конфликтов</h1>
 
-                    <h1 class="page-title">30. Разрешение конфликтов</h1>
-
-                    <div class="region region-content">
-    <div id="block-system-main" class="block-system">
+            <div class="region region-content">
+                <div id="block-system-main" class="block-system">
 
 
-  <div class="content">
-    <div id="node-31" class="node node-book clearfix" about="/resolving_conflicts" typeof="sioc:Item foaf:Document">
+                    <div class="content">
+                        <div id="node-31" class="node node-book clearfix" about="/resolving_conflicts"
+                             typeof="sioc:Item foaf:Document">
 
-  <div class="node-header">
+                            <div class="node-header">
 
-      </div> <!-- /.node-header -->
+                            </div>
+                            <!-- /.node-header -->
 
-  <div class="content clearfix">
-        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><h3>Цели</h3>
-<ul><li>Научиться разрешать конфликты во время слияния</li>
-</ul><h2><em>01</em> Слияние master с веткой style</h2>
-<p>Теперь вернемся к ветке style и попытаемся объединить ее с новой веткой master.</p>
-<h4>Выполните:</h4>
+                            <div class="content clearfix">
+                                <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                                    <div class="field-items">
+                                        <div class="field-item even" property="content:encoded"><h3>Цели</h3>
+                                            <ul>
+                                                <li>Научиться разрешать конфликты во время слияния</li>
+                                            </ul>
+                                            <h2><em>01</em> Слияние master с веткой style</h2>
+
+                                            <p>Теперь вернемся к ветке style и попытаемся объединить ее с новой веткой
+                                                master.</p>
+                                            <h4>Выполните:</h4>
 <pre class="instructions">git checkout style
 git merge master</pre>
 
-<h4>Результат:</h4>
+                                            <h4>Результат:</h4>
 
 <pre class="sample">$ git checkout style
 Switched to branch 'style'
@@ -35,9 +42,9 @@ Auto-merging lib/hello.html
 CONFLICT (content): Merge conflict in lib/hello.html
 Automatic merge failed; fix conflicts and then commit the result.</pre>
 
-<p>Если вы откроете lib/hello.html, вы увидите:</p>
+                                            <p>Если вы откроете lib/hello.html, вы увидите:</p>
 
-<h4>Файл: <em>lib/hello.html</em></h4>
+                                            <h4>Файл: <em>lib/hello.html</em></h4>
 
 <pre class="file">&lt;!-- Author: Marina Pushkova (marina@githowto.com) --&gt;
 &lt;html&gt;
@@ -54,13 +61,15 @@ Automatic merge failed; fix conflicts and then commit the result.</pre>
 &lt;/html&gt;
 </pre>
 
-<p>Первый раздел - версия во главе текущей ветки (style). Второй раздел - версия ветки master.</p>
+                                            <p>Первый раздел - версия во главе текущей ветки (style). Второй раздел -
+                                                версия ветки master.</p>
 
-<h2><em>02</em> Решение конфликта</h2>
+                                            <h2><em>02</em> Решение конфликта</h2>
 
-<p>Вам необходимо вручную разрешить конфликт. Внесите изменения в  <code>lib/hello.html</code> для достижения следующего результата.</p>
+                                            <p>Вам необходимо вручную разрешить конфликт. Внесите изменения в <code>lib/hello.html</code>
+                                                для достижения следующего результата.</p>
 
-<h4>Файл: <em>lib/hello.html</em></h4>
+                                            <h4>Файл: <em>lib/hello.html</em></h4>
 
 <pre class="file">&lt;!-- Author: Marina Pushkova (marina@githowto.com) --&gt;
 &lt;html&gt;
@@ -72,16 +81,28 @@ Automatic merge failed; fix conflicts and then commit the result.</pre>
   &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-<h2><em>03</em> Сделайте коммит решения конфликта</h2>
+                                            <h2><em>03</em> Сделайте коммит решения конфликта</h2>
 
-<h4>Выполните:</h4>
+                                            <h4>Выполните:</h4>
 
 <pre class="instructions">git add lib/hello.html
 git commit -m "Merged master fixed conflict."</pre>
 
-<h4>Результат:</h4>
+                                            <h4>Результат:</h4>
 
 <pre class="sample">$ git add lib/hello.html
 $ git commit -m "Merged master fixed conflict."
 Recorded resolution for 'lib/hello.html'.
 [style 645c4e6] Merged master fixed conflict.</pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
