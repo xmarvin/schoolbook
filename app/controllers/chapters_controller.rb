@@ -1,24 +1,30 @@
 class ChaptersController < ApplicationController
   belongs_to :book, :finder => :find_by_title
-         before_filter :find_root, :only => [:index, :show]
+  before_filter :find_root, :only => [:index, :show]
+
   def method_for_find
     :find_by_title
   end
 
   def show
-    show!  do
-
-    content = @chapter.content
-    @book.dict_items.each do |item|
-      content = content.gsub(/(\s)#{item.word}(\s)/i, "#{$1} #{tip_for(item.word, item.tip)} #{$2}")
-    end
-
-    @chapter_content = content.html_safe
+    show! do
+      puts "*"*100
+      if @chapter.allowed?(current_user)
+                  puts "/"*100
+        content = @chapter.content
+        @book.dict_items.each do |item|
+          content = content.gsub(/(\s)#{item.word}(\s)/i, "#{$1} #{tip_for(item.word, item.tip)} #{$2}")
+        end
+        @chapter_content = content.html_safe
+      else
+        render :partial => 'shared/not_allowed'
+        return
+      end
     end
   end
 
   def tip_for(word, tip)
-      "<span class='tooltip' data-tooltip='#{tip}'>#{word}</span>"
+    "<span class='tooltip' data-tooltip='#{tip}'>#{word}</span>"
   end
 
   def test
@@ -30,9 +36,6 @@ class ChaptersController < ApplicationController
     @book = Book.find_by_title(params[:book_id])
     @root_chapter = @book.chapters.root.first
   end
-
-
-
 
 
 end

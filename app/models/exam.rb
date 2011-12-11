@@ -6,22 +6,26 @@ class Exam
   accepts_nested_attributes_for :answers, :allow_destroy => true
   belongs_to :user
   belongs_to :chapter
-
+  field :result
 
   def build_tests(tests)
 
-      tests.each { |test|
-        self.answers.create!(:base_test => test)
+    tests.each { |test|
+      self.answers.create!(:base_test => test)
 
-      }
+    }
   end
 
-  def result
-    res = 0.0;
-    self.answers.each {|a|
-      res += a.result
-    }
-    res / self.answers.count
+
+  def calc_result!
+    if (self.answers && self.answers.count > 0)
+      res = 0.0;
+      self.answers.each { |a|
+        res += a.result
+      }
+      self.result = res / self.answers.count
+      self.save
+    end
 
   end
 

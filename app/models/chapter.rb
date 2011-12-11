@@ -1,6 +1,8 @@
 class Chapter
   include Mongoid::Document
 
+  MIN_SCORE = 0.75
+
   field :title, :type => String
   field :pretty_title, :type => String
   field :pos, :type => Integer
@@ -21,7 +23,7 @@ class Chapter
 
   before_destroy :attach_childs
 
-  default_scope :order => [:pos,:asc]
+  default_scope :order => [:pos, :asc]
 
   def attach_childs
     return if self.chapter.nil?
@@ -45,5 +47,30 @@ class Chapter
   def self.find_by_title title
     self.where(:title => title).first
   end
+
+  def prev_chapter
+    self.book.chapters.where(:pos => self.pos - 1).first
+  end
+
+  def passed?(user)
+    puts "passed?"
+    puts self.title
+    p self.exams.count
+    if self.base_tests.empty?
+      self.allowed?(user)
+    else
+      self.exams.where(:result.gte => MIN_SCORE, :user_id => user.id).count>0
+    end
+  end
+
+  def allowed?(user)
+    res = true
+    puts "allowed?"
+    if (self.prev_chapter)
+      res = self.prev_chapter.passed?(user)
+    end
+    res
+  end
+
 
 end

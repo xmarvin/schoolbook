@@ -62,7 +62,7 @@ ch6.option_tests.create!(:question =>"Вы добавили несколько �
 
 ch6.option_tests.create!(:question => "Пусть A, B, C, D — четыре последовательных коммита, где В отличается от A лишь несколькими удаленными файлами. Мы хотим вернуть эти файлы в D. Как мы можем это сделать?",
                           :options => [Option.new(:title => "git checkout origin/master"),
-                                       Option.new(:title => "$ git diff B A | git apply", :correct=> true), Option.new(:title => "git checkout A foo.c bar.h", :correct=> true),Option.new(:title => "git revert B", :correct=> true),
+                                       Option.new(:title => "$ git diff B A | git apply", :correct=> true), Option.new(:title => "C", :correct=> true),Option.new(:title => "git revert B", :correct=> true),
                           ])
 
 ch8 = @book.chapters.create!(:title => 'branches', :pos => 8, :chapter => ch4, :content => read_content(8))
