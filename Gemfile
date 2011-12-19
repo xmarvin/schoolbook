@@ -14,7 +14,7 @@ gem 'inherited_resources', '~> 1.2.2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
-
+gem 'cancan'
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -40,3 +40,5 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'rr'
 gem 'fabrication'
 gem 'database_cleaner'
+gem "wicked_pdf"
+gem "railroady"

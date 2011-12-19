@@ -8,7 +8,15 @@
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
 			
-					<p> <%=@chapter_content %></p>
+					<p>
+                      <%- unless @chapter_content.blank? -%>
+                          <%=@chapter_content %>
+                    <%- else %>
+
+                       <%= render  :partial => 'shared/not_allowed' %>
+                      <%- end %>
+
+                    </p>
 				</div>
 			</div>
 		
@@ -18,7 +26,7 @@
 		<!-- end #content -->
 		<div id="sidebar">
 			<ul>
-				<li>
+				<!--<li>
 					<div id="search" >
 					<form method="get" action="#">
 						<div>
@@ -28,7 +36,7 @@
 					</form>
 					</div>
 					<div style="clear: both;">&nbsp;</div>
-				</li>
+				</li> -->
 				<li>
 					
 					  <%= render 'menu' %>

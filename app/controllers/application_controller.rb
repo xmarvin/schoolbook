@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
 
   inherit_resources
 
- # rescue_from CanCan::AccessDenied do |exception|
- #   flash[:error] = exception.message
- #   render :text => "access denied"
- # end
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    render :text => "access denied"
+  end
 
 end

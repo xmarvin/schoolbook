@@ -82,3 +82,257 @@ $ git status
 </div>
   </div>
           </div>
+
+
+        <h2> ИНДЕКСАЦИЯ И КОММИТ </h2>
+
+        <p>
+Отдельный шаг индексации в git позволяет вам продолжать вносить изменения в рабочий каталог, а затем, в момент, когда вы захотите взаимодействовать с версионным контролем, git позволит записать изменения в малых коммитах, которые фиксируют то, что вы сделали.
+           </p>      <p>
+Предположим, что вы отредактировали три файла (a.html, b.html, and c.html). Теперь вы хотите закоммитить все изменения, при этом чтобы изменения в a.html и b.html были одним коммитом, в то время как изменения в c.html логически не связаны с первыми двумя файлами и должны идти отдельным коммитом.
+           </p>
+        <p>
+В теории, вы можете сделать следующее:
+           </p>
+        <div>
+git add a.html
+git add b.html
+git commit -m "Changes for a and b"
+git add c.html
+git commit -m "Unrelated change to c"
+            </div>
+        <p>
+Разделяя индексацию и коммит, вы имеете возможность с легкостью настроить, что идет в какой коммит.
+            </p>
+
+
+           <div id="page" class="clearfix">
+
+
+
+                    <h1 class="page-title">8. Коммит изменений</h1>
+
+                    <div class="region region-content">
+    <div id="block-system-main" class="block-system">
+
+
+  <div class="content">
+    <div id="node-9" class="node node-book clearfix" about="/commiting_changes" typeof="sioc:Item foaf:Document">
+
+  <div class="node-header">
+
+      </div> <!-- /.node-header -->
+
+  <div class="content clearfix">
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><h3>Цели</h3>
+<ul><li>Научиться коммитить изменения в репозиторий</li>
+</ul><h2><em>01</em> Закоммитьте изменения</h2>
+<p>Достаточно об индексации. Давайте сделаем коммит того, что мы проиндексировали, в репозиторий.</p>
+<p>Когда вы ранее использовали <code>git commit</code> для коммита первоначальной версии файла <code>hello.html</code> в репозиторий, вы включили метку <code>-m</code>, которая делает комментарий в командной строке. Команда commit позволит вам интерактивно редактировать комментарии для коммита. Теперь давайте это проверим.</p>
+<p>Если вы опустите метку <code>-m</code> из командной строки, git перенесет вас в редактор по вашему выбору. Редактор выбирается из следующего списка (в порядке приоритета):</p>
+<ul><li>переменная среды <span class="caps">GIT_EDITOR</span></li>
+<li>параметр конфигурации core.editor</li>
+<li>переменная среды <span class="caps">VISUAL</span></li>
+<li>переменная среды <span class="caps">EDITOR</span></li>
+</ul><p>У меня переменная <span class="caps">EDITOR</span> установлена в <code>emacsclient</code> (доступен для Linux и Mac).</p>
+<p>Сделайте коммит сейчас и проверьте состояние.</p>
+<h4>Выполните:</h4>
+<pre class="instructions">git commit</pre>
+
+<p>Вы увидите в вашем редакторе:</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">|
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#	modified:   hello.html
+#</pre>
+
+<p>В первой строке введите комментарий: «Added h1 tag». Сохраните файл и выйдите из редактора. Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">git commit
+Waiting for Emacs...
+[master 569aa96] Added h1 tag
+ 1 files changed, 1 insertions(+), 1 deletions(-)</pre>
+
+<p>Строка «Waiting for Emacs…» получена из программы <code>emacsclient</code>, которая посылает файл в запущенную программу emacs и ждет его закрытия. Остальные выходные данные – стандартные коммит-сообщения.</p>
+
+<h2><em>02</em> Проверьте состояние</h2>
+
+<p>В конце давайте еще раз проверим состояние.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git status</pre>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git status
+# On branch master
+nothing to commit (working directory clean)</pre>
+
+<p>Рабочий каталог чистый, можете продолжить работу.</p></div></div></div>
+      </div>
+        </div>
+      </div>
+        </div>
+                        </div>
+               </div>
+
+        <div class="clearfix">
+
+
+
+                    <h1 class="page-title">9. Изменения, а не файлы</h1>
+
+                    <div class="region region-content">
+    <div id="block-system-main" class="block-system">
+
+
+  <div class="content">
+    <div id="node-10" class="node node-book clearfix" about="/changes_not_files" typeof="sioc:Item foaf:Document">
+
+  <div class="node-header">
+
+      </div> <!-- /.node-header -->
+
+  <div class="content clearfix">
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><h3>Цели</h3>
+<ul><li>Понять, что git работает с изменениями, а не файлами.</li>
+</ul><p>Большинство систем версионного контроля работают с файлами. Вы добавляете файл в версионный контроль, а система отслеживает изменения файла с этого момента.</p>
+<p>Git фокусируется на изменениях в файле, а не самом файле. Когда вы осуществляете команду <code>git add file</code>,  вы не говорите git добавить файл в репозиторий. Скорее вы говорите, что git надо отметить текущее состояние файла, коммит которого будет произведен позже.</p>
+<p>Мы попытаемся исследовать эту разницу в данном уроке.</p>
+<h2><em>01</em> Первое изменение: Добавьте стандартные теги страницы</h2>
+<p>Измените страницу «Hello, World», чтобы она содержала стандартные теги <code>&lt;html&gt;</code> и <code>&lt;body&gt;</code>.</p>
+<h4>Файл: <em>hello.html</em></h4>
+<pre class="file"><strong>&lt;html&gt;
+  &lt;body&gt;</strong>
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  <strong>&lt;/body&gt;
+&lt;/html&gt;</strong></pre>
+
+<h2><em>02</em> Добавьте это изменение</h2>
+
+<p>Теперь добавьте это изменение в индекс git.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git add hello.html</pre>
+
+<h2><em>03</em> Второе изменение: Добавьте заголовки HTML</h2>
+
+<p>Теперь добавьте заголовки HTML (секцию <code>&lt;head&gt;</code>) к странице «Hello, World».</p>
+
+<h4>Файл: <em>hello.html</em></h4>
+
+<pre class="file">&lt;html&gt;
+<strong>  &lt;head&gt;
+  &lt;/head&gt;</strong>
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<h2><em>04</em> Проверьте текущий статус</h2>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git status</pre>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#	modified:   hello.html
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#	modified:   hello.html
+#</pre>
+
+<p>Обратите внимание на то, что <code>hello.html</code> указан дважды в состоянии. Первое изменение (добавление стандартных тегов) проиндексировано и готово к коммиту. Второе изменение (добавление заголовков HTML) является непроиндексированным. Если бы вы делали коммит сейчас, заголовки не были бы сохранены в репозиторий.</p>
+
+<p>Давайте проверим.</p>
+
+<h2><em>05</em> Коммит</h2>
+
+<p>Произведите коммит проиндексированного изменения (значение по умолчанию), а затем еще раз проверьте состояние.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git commit -m "Added standard HTML page tags"
+git status</pre>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git commit -m "Added standard HTML page tags"
+[master 8c32287] Added standard HTML page tags
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#	modified:   hello.html
+#
+no changes added to commit (use "git add" and/or "git commit -a")</pre>
+
+<p>Состояние команды говорит о том, что <code>hello.html</code> имеет незафиксированные изменения, но уже не в буферной зоне.</p>
+
+<h2><em>06</em> Добавьте второе изменение</h2>
+
+<p>Теперь добавьте второе изменение в индекс, а затем проверьте состояние с помощью команды <code>git status</code>.</p>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git add .
+git status</pre>
+
+<p class="note"><strong>Примечание:</strong> В качестве файла для добавления, мы использовали текущий каталог («.»). Это самый краткий и удобный путь для добавления всех изменений в файлы текущего каталога и его подкаталоги. Но поскольку он добавляет все, <em>не лишним</em> будет проверить состояние перед запуском <code>add</code>, просто чтобы убедиться, что вы не добавили какой-то файл, который добавлять было не нужно.</p>
+
+<p class="note">Я хотела показать вам трюк с <code>add</code>, далее мы будем на всякий случай продолжать добавлять явные файлы.</p>
+
+<p>Вы увидите…</p>
+
+<h4>Результат:</h4>
+
+<pre class="sample">$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#	modified:   hello.html
+#</pre>
+
+<p>Второе изменение было проиндексировано и готово к коммиту.</p>
+
+<h2><em>07</em> Сделайте коммит второго изменения</h2>
+
+<h4>Выполните:</h4>
+
+<pre class="instructions">git commit -m "Added HTML header"</pre></div></div></div>
+      </div>
+        </div>
+      </div>
+        </div>
+                        </div>
+            </div>

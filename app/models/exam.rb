@@ -8,12 +8,19 @@ class Exam
   belongs_to :chapter
   field :result
 
+  default_scope :order => [:created_at, :desc]
+  MIN_SCORE = 0.75
+
   def build_tests(tests)
 
     tests.each { |test|
       self.answers.create!(:base_test => test)
 
     }
+  end
+
+  def passed?
+    self.result.to_i > MIN_SCORE
   end
 
 

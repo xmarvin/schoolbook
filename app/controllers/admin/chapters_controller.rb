@@ -20,8 +20,6 @@ class Admin::ChaptersController < Admin::BaseController
   end
 
   def update
-    puts '*'*100
-    p @chapter
     update! do |s,f|
       s.html{
         redirect_to [:edit,  :admin, @book,@chapter]

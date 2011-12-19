@@ -8,4 +8,6 @@ class User
   field :admin, :type => Boolean, :default => false
 
   has_many :exams
+  field :name, :type => String
+
 end

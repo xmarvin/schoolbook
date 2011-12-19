@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
   belongs_to :chapter, :finder => :find_by_title
+  before_filter :find_book, :only => :index
 
   def new
     new! do
@@ -22,5 +23,9 @@ class ExamsController < ApplicationController
       }
     end
   end
+   def find_book
+    @book = Book.find_by_title(params[:book_id])
+  end
+
 
 end

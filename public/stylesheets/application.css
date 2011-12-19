@@ -1,10 +1,9 @@
-
-/*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-*/
-
+.not_passed{
+ color: red;
+}
+.passed{
+ color: #33cc00;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -67,7 +66,7 @@ a:hover {
 
 #logo {
 	float: left;
-	height: 90px;
+	height: 98px;
 	margin: 0;
 	padding-top: 50px;
 	background: url(images/img02.jpg) no-repeat left 20px;

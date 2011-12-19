@@ -7,19 +7,12 @@ class ChaptersController < ApplicationController
   end
 
   def show
-    show! do
-      puts "*"*100
-      if @chapter.allowed?(current_user)
-                  puts "/"*100
-        content = @chapter.content
-        @book.dict_items.each do |item|
-          content = content.gsub(/(\s)#{item.word}(\s)/i, "#{$1} #{tip_for(item.word, item.tip)} #{$2}")
-        end
-        @chapter_content = content.html_safe
-      else
-        render :partial => 'shared/not_allowed'
-        return
-      end
+    show! do |f|
+    set_content
+
+      f.pdf{
+        render :pdf => "asd.pdf"
+      }
     end
   end
 
@@ -35,6 +28,17 @@ class ChaptersController < ApplicationController
   def find_root
     @book = Book.find_by_title(params[:book_id])
     @root_chapter = @book.chapters.root.first
+  end
+
+  def set_content
+    if @chapter.allowed?(current_user)
+
+         content = @chapter.content
+        @book.dict_items.each do |item|
+          content = content.gsub(/(\s)#{item.word}(\s)/i, "#{$1} #{tip_for(item.word, item.tip)} #{$2}")
+        end
+       @chapter_content = content.html_safe
+      end
   end
 
 

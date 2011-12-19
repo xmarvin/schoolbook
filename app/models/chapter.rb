@@ -1,7 +1,7 @@
 class Chapter
   include Mongoid::Document
 
-  MIN_SCORE = 0.75
+
 
   field :title, :type => String
   field :pretty_title, :type => String
@@ -59,7 +59,7 @@ class Chapter
     if self.base_tests.empty?
       self.allowed?(user)
     else
-      self.exams.where(:result.gte => MIN_SCORE, :user_id => user.id).count>0
+      self.exams.where(:result.gte => Exam::MIN_SCORE, :user_id => user.id).count>0
     end
   end
 

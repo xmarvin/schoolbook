@@ -1,6 +1,7 @@
 Schoolbook::Application.routes.draw do
-
-  resources :exams
+   devise_for :users do
+    get 'users/sign_out', :to => 'devise/sessions#destroy'
+  end
 
   mount Rack::GridFS::Endpoint.new(:db => Mongoid.database, :lookup => :path), :at => "gridfs"
 
@@ -24,10 +25,12 @@ Schoolbook::Application.routes.draw do
 
       resources :images
       resources :dict_items
+      resources :exams
 
       resources :chapters do
         resources :option_tests
         resources :text_tests
+
       end
     end
   end

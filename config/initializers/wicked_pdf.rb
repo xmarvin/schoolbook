@@ -1,0 +1,1 @@
+WickedPdf.config = {:exe_path => 'D:\1\wkhtmltopdf.exe', :encoding => 'utf8'}
