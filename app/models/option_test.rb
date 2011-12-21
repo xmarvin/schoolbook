@@ -24,7 +24,6 @@ class OptionTest < BaseTest
 
 
   def set_nums
-    puts "set nums"
     self.options.each {
       |o|
       if o.num==0

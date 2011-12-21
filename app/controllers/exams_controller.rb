@@ -1,15 +1,16 @@
 class ExamsController < ApplicationController
   belongs_to :chapter, :finder => :find_by_title
-  before_filter :find_book, :only => :index
+  before_filter :find_book, :only => [:index, :edit]
 
-  def new
-    new! do
+  def edit
 
-      @exam.save
-      @exam.user = current_user
-      @exam.build_tests(@chapter.base_tests)
-      @exam.save
-    end
+    @chapter = Chapter.find_by_title(params[:chapter_id])
+    @exam = @chapter.exam_for_user(current_user)
+
+    p "*"*100
+    p @exam
+
+    redirect_to [@book, @chapter] if @exam.nil?
 
   end
 
@@ -23,6 +24,7 @@ class ExamsController < ApplicationController
       }
     end
   end
+
    def find_book
     @book = Book.find_by_title(params[:book_id])
   end

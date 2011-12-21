@@ -22,7 +22,7 @@ Dir["db/git/images/*.*"].each { |file|
 }
 
 root = @book.chapters.create!(:title => 'About', :pos => 1, :content => read_content(1))
-        root.option_tests.create!(:question => "Существуют ли внешние визуальные утилиты для работы с ГИТ?",
+root.option_tests.create!(:question => "Существуют ли внешние визуальные утилиты для работы с ГИТ?",
                           :options => [Option.new(:title => "SVN"), Option.new(:title => "Нет"),
                                        Option.new(:title => "Да", :correct => true)
                           ])
@@ -36,19 +36,52 @@ root.option_tests.create!(:question => "Что тут лишние?",
                           ])
 
 ch2 = @book.chapters.create!(:title => 'Installation', :pos => 2, :chapter => root, :content => read_content(2))
+
+
 ch3 = @book.chapters.create!(:title => 'Configuration', :pos => 3, :chapter => root, :content => read_content(3))
+
+
+ch3.option_tests.create!(:question => "Является ли ГИТ бесплатным ПО?",
+                         :options => [Option.new(:title => "Нет"),
+                                      Option.new(:title => "Да", :correct => true)
+                         ])
+ch3.option_tests.create!(:question => "Для каких ОС существуют реализации клиента GIT?",
+                         :options => [
+                             Option.new(:title => "только для Windows"),
+                             Option.new(:title => "только для Linux & Mac OS"),
+                             Option.new(:title => "только для Windows & Linux"),
+                             Option.new(:title => "Для всех платформ", :correct => true)
+                         ])
+
+ch3.option_tests.create!(:question => "Какой шаг необходим сразу после инсталяции ГИТ?",
+                         :options => [
+                             Option.new(:title => "Зарегистрироваться на сайте github.com"),
+                             Option.new(:title => "настроить собственный сервер с ГИТ"),
+
+                             Option.new(:title => "сгенерировать SSH ключ.", :correct => true)
+                         ])
+
+
 ch3.option_tests.create!(:question => "Где лежит конфигурационный файл ГИТ?",
+                         :level => 2,
                          :options => [Option.new(:title => "в корне диска"),
-                                      Option.new(:title => "в корне домашнего каталога",:correct => true),
+                                      Option.new(:title => "в корне домашнего каталога", :correct => true),
                                       Option.new(:title => "в корне проекта", :correct => true)
                          ])
+ch3.option_tests.create!(:question => "Основные поля для идентификации разработчика - это:",
+                         :level => 2,
+                         :options => [Option.new(:title => "почта и имя", :correct => true),
+                                      Option.new(:title => "skype и логин"),
+                                      Option.new(:title => "телефон и имя")
+                         ])
 ch3.text_tests.create!(:question => "Как называется конфигурационный файл ГИТ?",
+                       :level => 2,
                        :answer => ".gitconfig")
 
 ch4 = @book.chapters.create!(:title => 'changes', :pos => 4, :chapter => root, :content => read_content(4))
 
 
-ch5 = @book.chapters.create!(:title => 'commits',:pos => 5, :chapter => ch4, :content => read_content(5))
+ch5 = @book.chapters.create!(:title => 'commits', :pos => 5, :chapter => ch4, :content => read_content(5))
 
 
 ch7 = @book.chapters.create!(:title => 'rebase', :pos => 6, :chapter => ch5, :content => read_content(7))
@@ -56,14 +89,14 @@ ch6 = @book.chapters.create!(:title => 'backup', :pos => 7, :chapter => ch5, :co
 
 
 ch6.option_tests.create!(:question =>"Вы добавили несколько файлов и выполнилb git add. Как можно отменить добавление?",
-                          :options => [Option.new(:title => "$ git checkout origin/master"),
-                                       Option.new(:title => "$ git checkout master"), Option.new(:title => "git reset HEAD", :correct=> true)
-                          ])
+                         :options => [Option.new(:title => "$ git checkout origin/master"),
+                                      Option.new(:title => "$ git checkout master"), Option.new(:title => "git reset HEAD", :correct=> true)
+                         ])
 
 ch6.option_tests.create!(:question => "Пусть A, B, C, D — четыре последовательных коммита, где В отличается от A лишь несколькими удаленными файлами. Мы хотим вернуть эти файлы в D. Как мы можем это сделать?",
-                          :options => [Option.new(:title => "git checkout origin/master"),
-                                       Option.new(:title => "$ git diff B A | git apply", :correct=> true), Option.new(:title => "C", :correct=> true),Option.new(:title => "git revert B", :correct=> true),
-                          ])
+                         :options => [Option.new(:title => "git checkout origin/master"),
+                                      Option.new(:title => "$ git diff B A | git apply", :correct=> true), Option.new(:title => "C", :correct=> true), Option.new(:title => "git revert B", :correct=> true),
+                         ])
 
 ch8 = @book.chapters.create!(:title => 'branches', :pos => 8, :chapter => ch4, :content => read_content(8))
 
@@ -72,10 +105,10 @@ ch9 = @book.chapters.create!(:title => 'diff', :pos => 9, :chapter => ch8, :cont
 
 ch9.text_tests.create!(:question => "Как называется команда позволяющая узнать, кто автор конкретной строчки в файле?",
                        :answer => "blame")
- ch9.text_tests.create!(:question => "Вы хотите узнать, что было изменено в ветке develop, перед тем, как выполнить слияние с ней. что следует ввести?",
+ch9.text_tests.create!(:question => "Вы хотите узнать, что было изменено в ветке develop, перед тем, как выполнить слияние с ней. что следует ввести?",
                        :answer => "git diff origin/develop")
 
 ch10 = @book.chapters.create!(:title => 'resolve conflicts', :pos => 10, :chapter => ch8, :content => read_content(10))
 
 
-ch11 = @book.chapters.create!(:title => 'external', :pos => 11,:chapter => ch2, :content => read_content(11))
+ch11 = @book.chapters.create!(:title => 'external', :pos => 11, :chapter => ch2, :content => read_content(11))

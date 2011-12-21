@@ -2,7 +2,6 @@ class Chapter
   include Mongoid::Document
 
 
-
   field :title, :type => String
   field :pretty_title, :type => String
   field :pos, :type => Integer
@@ -52,10 +51,48 @@ class Chapter
     self.book.chapters.where(:pos => self.pos - 1).first
   end
 
+
+  def exam_for_user(user)
+
+    if (self.base_tests.count > 0)
+      user_exams = self.exams.where(:user_id => user.id)
+
+      if (user_exams.count == 0)
+        user_exams = build_exams_for_user (user)
+      end
+      res = nil
+       user_exams.each {|e|
+        unless e.passed?
+          res = e
+          break
+        end
+       }
+       res
+    end
+
+  end
+
+
+  def build_exams_for_user (user)
+    exams = []
+
+    for i in 1..2 do
+
+      level_tests = self.base_tests.by_level(i)
+
+
+      if (level_tests.count > 0)
+        exam = self.exams.create!(:user => user)
+        exam.build_tests(level_tests)
+        exam.save
+        exams.push(exam)
+      end
+
+    end
+      exams
+  end
+
   def passed?(user)
-    puts "passed?"
-    puts self.title
-    p self.exams.count
     if self.base_tests.empty?
       self.allowed?(user)
     else

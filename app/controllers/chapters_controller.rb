@@ -11,7 +11,7 @@ class ChaptersController < ApplicationController
     set_content
 
       f.pdf{
-        render :pdf => "asd.pdf"
+        render :pdf => "pdf"
       }
     end
   end

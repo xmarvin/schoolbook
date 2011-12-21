@@ -7,9 +7,12 @@ class Exam
   belongs_to :user
   belongs_to :chapter
   field :result
+  field :blocked, :type => Boolean, :default => false
 
   default_scope :order => [:created_at, :desc]
-  MIN_SCORE = 0.75
+
+  MIN_SCORE = 0.7
+  TEACHER_SCORE = 0.4
 
   def build_tests(tests)
 
@@ -20,8 +23,14 @@ class Exam
   end
 
   def passed?
-    self.result.to_i > MIN_SCORE
+    self.result.to_f > MIN_SCORE
   end
+
+  def should_blocked?
+    self.result.to_i <= TEACHER_SCORE
+  end
+
+
 
 
   def calc_result!
@@ -31,6 +40,9 @@ class Exam
         res += a.result
       }
       self.result = res / self.answers.count
+
+      self.blocked = should_blocked?
+
       self.save
     end
 

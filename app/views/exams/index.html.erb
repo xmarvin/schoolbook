@@ -14,11 +14,9 @@
     <td><%= exam.updated_at %></td>
     <td><%= exam.result  %></td>
     <td><%= state(exam)  %></td>
-    <td><%= link_to 'Show', [@chapter.book, @chapter,exam] %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
  <%= link_to 'back to ' + @chapter.title, [@chapter.book, @chapter] %> |
-<%= link_to 'New Exam', new_book_chapter_exam_path(@chapter.book, @chapter) %>
