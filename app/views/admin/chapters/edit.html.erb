@@ -1,0 +1,20 @@
+<%= javascript_include_tag 'chapter_edit' %>
+
+<br />
+ <%= link_to 'Back', admin_book_chapters_path(@book) %>                                            |
+<%= link_to 'To option Tests', admin_book_chapter_option_tests_path(@chapter.book, @chapter) %>   |
+<%= link_to 'Text Tests', admin_book_chapter_text_tests_path(@chapter.book, @chapter) %>
+
+<br />
+<hr />
+<%= form_for([:admin, @book, @chapter]) do |f| %>
+
+  <div class="field">
+    <%= f.text_area :content, :rows => 40, :cols => 130 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

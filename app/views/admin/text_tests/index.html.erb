@@ -1,0 +1,21 @@
+<h1>Listing text tests</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @text_tests.each do |option_test| %>
+  <tr>
+    <td><%= option_test.question %></td>
+
+    <td><%= link_to 'Edit', [:edit, :admin, @chapter.book, @chapter, option_test] %></td>
+    <td><%= link_to 'Destroy', [:admin, @chapter.book, @chapter, option_test], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back to chapter', edit_admin_book_chapter_path(@chapter.book, @chapter) %>  |
+<%= link_to 'Add new test', new_admin_book_chapter_text_test_path(@chapter.book, @chapter) %>

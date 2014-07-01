@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schoolbook</title>
+
+  <%= stylesheet_link_tag "application", "tooltip" %>
+  <%= javascript_include_tag "jquery-1.5.0.min", "jquery-ui.min", "jquery-ujs", "application" %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#"> <%= @book ? @book.title : 'Git' %></a></h1>
+
+
+    </div>
+     <%- if current_user %>
+          <div class='hello'>
+
+            <div>Hi, <%= link_to current_user.name, edit_user_registration_path %></div>
+              <div>
+              <%=   link_to "exit", users_sign_out_path         %>
+              </div>
+          </div>
+      <%- end %>
+
+   <h1 style="color:blue"> <%= flash[:msg] %> </h1>
+  </div>
+  <div id="menu">
+    <ul>
+      <%- if @book %>
+          <li class="current_page_item">
+            <%= link_to "Chapters", [@book, :chapters] %>
+          </li>
+
+          <li>
+            <%= link_to "Dictionary", [@book, :dict_items] %>
+          </li>
+
+
+          <li>
+            <%= link_to "About", @book %>
+          </li>
+      <%- end %>
+      <%- if !current_user.nil? and (current_user.admin?) %>
+          <li>
+            <%= link_to "TEACHER AREA", admin_root_path %>
+          </li>
+
+      <%- end %>
+
+      <%- if !current_user.nil? and (current_user.superadmin?) %>
+          <li>
+            <%= link_to "ADMIN AREA", superadmin_root_path %>
+          </li>
+
+      <%- end %>
+
+
+    </ul>
+  </div>
+  <%= yield %>
+
+
+</div>
+<!-- end #page -->
+</div>
+<div id="footer">
+  <p> No copyrights(x) 2011 Alexey Kisel. No rights reserved</p>
+</div>
+</body>
+</html>

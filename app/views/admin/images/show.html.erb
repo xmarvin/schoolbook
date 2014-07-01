@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @image.image.url  %>
+
+<%= link_to 'Edit', edit_admin_book_image_path(@book,@image) %> |
+<%= link_to 'Back', admin_book_images_path(@book) %>

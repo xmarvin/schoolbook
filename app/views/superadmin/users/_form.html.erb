@@ -1,0 +1,20 @@
+<%= form_for([:superadmin, @user]) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :admin, "Teacher" %><br />
+    <%= f.check_box :admin %>
+  </div>
+    <div class="field">
+    <%= f.label :superadmin, "Admin" %><br />
+    <%= f.check_box :superadmin %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

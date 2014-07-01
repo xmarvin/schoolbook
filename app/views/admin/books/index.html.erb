@@ -1,0 +1,27 @@
+<h1>Listing books</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+  <tr>
+    <td><%= book.title %></td>
+    <td><%= link_to 'Logs',[:admin, book, :exams, ] %></td>
+    <td><%= link_to 'Сhapters',[:admin,book, :chapters] %></td>
+    <td><%= link_to 'Dictionary',[:admin,book, :dict_items] %></td>
+    <td><%= link_to 'Edit', edit_admin_book_path(book) %></td>
+    <td><%= link_to 'Destroy', [:admin,book], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Book', new_admin_book_path %>

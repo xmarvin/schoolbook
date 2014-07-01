@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schoolbook</title>
+
+  <%= stylesheet_link_tag "application", "admin",  "jquery.wysiwyg", "jquery-ui-1.8.16.custom" %>
+  <%= javascript_include_tag "jquery-1.5.0.min", "jquery-ui.min", "jquery-ujs", 'jquery-ui-1.8.16.custom.min',  "application", "jquery.wysiwyg" , "controls/wysiwyg.image", "controls/wysiwyg.link", "controls/wysiwyg.table", "controls/wysiwyg.colorpicker"  %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#"> <%= @book ? @book.title : 'Git' %></a></h1>
+    </div>
+  </div>
+  <div id="menu">
+    <ul>
+
+
+               <li>
+            <%= link_to "Book AREA", root_path %>
+              </li>
+
+    </ul>
+  </div>
+  <%= yield %>
+
+
+</div>
+<!-- end #page -->
+</div>
+<div id="footer">
+  <p> No copyrights(x) 2011 Alexey Kisel. No rights reserved</p>
+</div>
+</body>
+</html>

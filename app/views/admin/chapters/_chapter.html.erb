@@ -1,0 +1,6 @@
+<li rel = "<%= chapter.id.to_s %>" id="pos_<%= chapter.pos %>" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> <%= chapter.title %>
+  <div style="float:right;">
+  <%= link_to 'Edit', edit_admin_book_chapter_path(@book, chapter) %>   |
+  <%= link_to 'Destroy', [:admin, chapter.book, chapter], confirm: 'Are you sure?', method: :delete %>
+      </div>
+</li>

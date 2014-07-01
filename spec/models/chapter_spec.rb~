@@ -1,0 +1,26 @@
+require 'spec_helper'
+
+describe Chapter do
+
+  before (:each) do
+    @chapter = Chapter.new
+  end
+
+  it "should reattach childrens after destroy" do
+
+    child1  = Chapter.create!
+    child2  = Chapter.create!
+
+    subroot = Chapter.create!(:chapters => [child1, child2])
+
+
+    root = Chapter.create!(:chapters => [subroot])
+
+    Chapter.count.should == 4
+
+    Chapter.find(root.id).chapters.count.should == 1
+
+
+  end
+
+end

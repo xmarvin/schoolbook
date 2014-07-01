@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+ <p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+ <p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Teacher?</b>
+  <%= @user.admin? %>
+</p>
+
+<p>
+  <b>Admin?</b>
+  <%= @user.superadmin? %>
+</p>
+
+<%= link_to 'Edit', edit_superadmin_user_path(@user) %> |
+<%= link_to 'Back', [:superadmin, :users] %>

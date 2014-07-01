@@ -1,0 +1,1 @@
+WickedPdf.config = {:exe_path => Rails.root.join('wkhtmltopdf','wkhtmltopdf.exe').to_s, :encoding => 'utf8'}

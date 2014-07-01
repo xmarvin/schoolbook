@@ -1,0 +1,42 @@
+<h1>Chapters</h1>
+<ul id="sortable">
+  <%= render :partial => @chapters %>
+
+</ul>
+<br />
+<a id="reposition" href="#"> Reposition!</a>
+   <br />
+
+<%= render :partial => 'form' , :locals => {:chapter => Chapter.new}%>
+
+
+           <style>
+	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+	#sortable li span { position: absolute; margin-left: -1.3em; }
+	</style>
+
+
+       <script>
+             $().ready(function(){
+                 $( "#sortable" ).sortable();
+         $("#reposition").live("click", function(){
+            var params = $( "#sortable" ).sortable("toArray");
+              var data = [];
+             for(var i=0; i<params.length; i++){
+                 data.push({id : $($( "#sortable li")[i]).attr('rel'),
+                            pos : i+1
+
+                 });
+
+             }
+
+
+             $.post('<%= reposition_admin_book_chapters_path(@book) %>', {data:data}, function(){
+
+             });
+            return false;
+         });
+         });
+
+</script>

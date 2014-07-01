@@ -1,0 +1,30 @@
+
+<%- arr =  @chapter.nil? ?   [@exam] : [ @chapter.book, @chapter, @exam] %>
+
+<%= form_for(arr) do |f| %>
+
+  <div class = "options">
+    <%= f.fields_for :answers, @exam.answers  do |ff| %>
+      <div>
+        <%= render ff.object.base_test %>
+
+      </div>
+
+       <div class="field">
+
+    <%= ff.label :answer %><br />
+    <%= ff.text_field :answer, :autocomplete => :off,  :size => 6 %>
+  </div>
+
+
+
+    <%- end %>
+  </div>
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<h1>Listing exams</h1>
+
+<table>
+  <tr>
+    <th>Chapter</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Result</th>
+    <th>State</th>
+
+  </tr>
+
+<% @exams.each do |exam| %>
+  <tr>
+    <td><%= exam.chapter.title %></td>
+    <td><%= exam.user.name  %></td>
+    <td><%= exam.updated_at %></td>
+    <td><%= exam.result  %></td>
+    <td><%= state(exam)  %>
+       <%- if exam.blocked?  %>
+         Was blocked. <%= link_to "UnLock", [:unlock, :admin, @book, exam], :class => :unlock %>
+       <%- end %>
+
+     </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= link_to 'back', [:admin, @book] %>
+       <script>
+         $().ready(function(){
+         $("a.unlock").live("click", function(){
+                 var link = this;
+               $(link).parent().html('');
+             $.post($(this).attr('href'), {}, function(res){
+
+             });
+            return false;
+         });
+         });
+               </script>

@@ -1,0 +1,29 @@
+<h1>Listing exams</h1>
+
+<table>
+  <tr>
+    <th> Date</th>
+    <th> Result</th>
+    <th> Passed? </th>
+    <th></th>
+
+  </tr>
+
+<% @exams.each do |exam| %>
+  <tr>
+    <td><%= exam.updated_at %></td>
+    <td><%= exam.result  %></td>
+    <td><%= state(exam)  %></td>
+    <td>
+       <%- if exam.blocked?  %>
+         Вы очень плохо прошли тест. Нужно поговорить с преподователем
+       <%- end %>
+
+     </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+ <%= link_to 'Вернутся к главе ' + @chapter.title, [@chapter.book, @chapter] %> |
+ <%= link_to 'Пройти следующий тест', [:test, @book, @chapter, :exams] %>

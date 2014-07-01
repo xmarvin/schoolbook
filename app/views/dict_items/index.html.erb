@@ -1,0 +1,17 @@
+<h1>Dictionary</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th> Tip</th>
+      <th> </th>
+  </tr>
+
+<% @dict_items.each do |tip| %>
+  <tr>
+    <td><%= tip.word %></td>
+    <td><%= tip.tip %></td>
+
+  </tr>
+<% end %>
+</table>

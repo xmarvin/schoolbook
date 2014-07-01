@@ -1,0 +1,87 @@
+	<div id="page">
+	<div id="page-bgtop">
+	<div id="page-bgbtm">
+		<div id="content">
+			<div class="post">
+				<h2 class="title"><%=@chapter.title%></h2>
+
+                   <%- unless @chapter_content.blank? -%>
+				<p class="meta"><span class="date">September 10, 2009</span><span class="posted">
+
+                  <%- if @chapter.passed?(current_user) %>
+
+                     <%- if @chapter.next_chapter.nil? %>
+
+
+
+
+
+                        <%- else %>
+
+                        <%= link_to  @chapter.next_chapter.title, [@book, @chapter.next_chapter] %>
+
+
+
+
+                     <%- end %>
+
+
+                      <%- else %>
+
+                  <%= link_to 'Тест', [:test, @book, @chapter, :exams] %>
+                      <%- end %>
+
+
+                </span></p>
+				<div style="clear: both;">&nbsp;</div>
+				<div class="entry">
+			
+					<p>
+
+                          <%=@chapter_content %>
+
+
+
+
+                    </p>
+				</div>
+                      <%- else %>
+                        <%= render  :partial => 'shared/not_allowed' %>
+                      <%- end %>
+
+
+
+
+			</div>
+		
+	
+		<div style="clear: both;">&nbsp;</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<!--<li>
+					<div id="search" >
+					<form method="get" action="#">
+						<div>
+							<input type="text" name="s" id="search-text" value="" />
+							<input type="submit" id="search-submit" value="GO" />
+						</div>
+					</form>
+					</div>
+					<div style="clear: both;">&nbsp;</div>
+				</li> -->
+				<li>
+					
+					  <%= render 'menu' %>
+					 
+				</li>
+				
+
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	</div>
+	</div>
